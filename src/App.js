@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
+import { auth } from './database/firebase.utils';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
@@ -36,22 +37,44 @@ const MensPage = () => (
     </div>
 );
 
-function App() {
-    return (
-        <div>
-            <Header />
-            <Switch>
-                <Route exact path='/' component={HomePage} />
-                <Route exact path='/shop' component={ShopPage} />
-                <Route path='/shop/hats' component={HatsPage} />
-                <Route path='/shop/jackets' component={JacketsPage} />
-                <Route path='/shop/sneakers' component={SneakersPage} />
-                <Route path='/shop/womens' component={WomensPage} />
-                <Route path='/shop/mens' component={MensPage} />
-                <Route path='/signin' component={SignInAndSignUpPage} />
-            </Switch>
-        </div>
-    );
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            currentUser: null
+        };
+    }
+
+    unsubsribeFromAuth = null;
+
+    componentDidMount() {
+        auth.onAuthStateChanged(user => {
+            this.setState({ currentUser: user });
+            console.log(user);
+        });
+    }
+
+    componentWillUnmount() {
+        this.unsubsribeFromAuth();
+    }
+
+    render() {
+        return (
+            <div>
+                <Header currentUser={this.state.currentUser} />
+                <Switch>
+                    <Route exact path='/' component={HomePage} />
+                    <Route exact path='/shop' component={ShopPage} />
+                    <Route path='/shop/hats' component={HatsPage} />
+                    <Route path='/shop/jackets' component={JacketsPage} />
+                    <Route path='/shop/sneakers' component={SneakersPage} />
+                    <Route path='/shop/womens' component={WomensPage} />
+                    <Route path='/shop/mens' component={MensPage} />
+                    <Route path='/signin' component={SignInAndSignUpPage} />
+                </Switch>
+            </div>
+        );
+    }
 }
 
 export default App;
