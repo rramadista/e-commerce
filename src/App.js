@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { auth, createUserProfileDocument } from './database/firebase.utils';
-import { setCurrentUser } from './services/user/user.actions';
+import {
+    auth,
+    createUserProfileDocument
+} from './services/firebase/firebase.utils';
+import { setCurrentUser } from './services/redux/user/user.actions';
 import './App.css';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';

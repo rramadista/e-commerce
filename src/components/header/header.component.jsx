@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { auth } from '../../database/firebase.utils';
+import { auth } from '../../services/firebase/firebase.utils';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import './header.styles.scss';
