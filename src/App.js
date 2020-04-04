@@ -13,41 +13,12 @@ import { selectCurrentUser } from './services/redux/user/user.selectors';
 
 import './App.css';
 
+import Header from './components/header/header.component';
+
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
-import Header from './components/header/header.component';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component';
 import CheckoutPage from './pages/checkout/checkout.component';
-
-const HatsPage = () => (
-    <div>
-        <h1>HATS PAGE</h1>
-    </div>
-);
-
-const JacketsPage = () => (
-    <div>
-        <h1>JACKETS PAGE</h1>
-    </div>
-);
-
-const SneakersPage = () => (
-    <div>
-        <h1>SNEAKERS PAGE</h1>
-    </div>
-);
-
-const WomensPage = () => (
-    <div>
-        <h1>WOMENS PAGE</h1>
-    </div>
-);
-
-const MensPage = () => (
-    <div>
-        <h1>MENS PAGE</h1>
-    </div>
-);
 
 class App extends Component {
     unsubscribeFromAuth = null;
@@ -80,13 +51,8 @@ class App extends Component {
                 <Header />
                 <Switch>
                     <Route exact path='/' component={HomePage} />
-                    <Route exact path='/shop' component={ShopPage} />
+                    <Route path='/shop' component={ShopPage} />
                     <Route exact path='/checkout' component={CheckoutPage} />
-                    <Route path='/shop/hats' component={HatsPage} />
-                    <Route path='/shop/jackets' component={JacketsPage} />
-                    <Route path='/shop/sneakers' component={SneakersPage} />
-                    <Route path='/shop/womens' component={WomensPage} />
-                    <Route path='/shop/mens' component={MensPage} />
                     <Route
                         exact
                         path='/signin'
